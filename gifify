@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+mplayer -noar -ao null -vo png:outdir=gif $1
+mogrify -format gif gif/*.png
+gifsicle --colors=256 --delay=10 --loopcount=0 --dither -O3 gif/*.gif > $2
+rm -rf gif
