@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+PORT=$1
+
+ssh -v -N -R 8001:localhost:$PORT tn
