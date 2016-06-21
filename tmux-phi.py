@@ -13,11 +13,16 @@ server = server.Server()
 session = server.list_sessions()[0]
 window = session.attached_window
 
-window_height = int(window.get('window_height'))
 window_width = int(window.get('window_width'))
 
-main_width, secondary_width = phi(window_width)
+main_width, _ = phi(window_width)
 
-current_pane = window.attached_pane
-current_pane.set_width(main_width)
-current_pane.set_height(window_height)
+panes = window.panes
+main_pane = window.panes[0]
+
+window.split_window()
+window.select_layout('main-vertical')
+
+window_height = int(window.get('window_height'))
+main_pane.set_width(main_width)
+window.select_pane('1')
