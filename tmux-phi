@@ -26,3 +26,6 @@ window.select_layout('main-vertical')
 window_height = int(window.get('window_height'))
 main_pane.set_width(main_width)
 window.select_pane('1')
+
+for pane in window.panes:
+    pane.send_keys('clear')
