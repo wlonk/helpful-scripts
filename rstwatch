@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+TYPE=dirhtml
+
+while getopts "t:" Option; do
+    case $Option in
+        t ) TYPE=${OPTARG};;
+        * ) echo "Unimplemented option chosen."; exit 1;;   # Default.
+    esac
+done
+
+shift $(($OPTIND - 1))
+
+fswatch -o $@ | xargs -n1 -I{} make $TYPE
